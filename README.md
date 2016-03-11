@@ -31,3 +31,22 @@ function start() {
 
 export { start };
 ```
+
+And in your client code, you need to set some properties on `window` so that the PhantomJS script knows what is happening:
+
+```js
+// Run the client tests. Meteor calls the `runTests` function exported by
+// the driver package on the client.
+function runTests() {
+  // These `window` properties are all used by the phantomjs script to
+  // know what is happening.
+  window.testsAreRunning = true;
+  mocha.run((failures) => {
+    window.testsAreRunning = false;
+    window.testFailures = failures;
+    window.testsDone = true;
+  });
+}
+
+export { runTests };
+```

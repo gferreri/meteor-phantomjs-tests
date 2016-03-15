@@ -12,6 +12,11 @@ function startPhantom({
 }) {
   var scriptPath = Assets.absoluteFilePath(PHANTOMJS_SCRIPT_FILE_NAME);
 
+  if (process.env.METEOR_PHANTOMJS_DEBUG) {
+    console.log('PhantomJS Path:', phantomjs.path);
+    console.log('PhantomJS Script Path:', scriptPath);
+  }
+
   var phantomProcess = childProcess.execFile(phantomjs.path, [scriptPath], {
     env: {
       ROOT_URL: process.env.ROOT_URL,

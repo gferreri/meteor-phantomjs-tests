@@ -1,7 +1,16 @@
 import path from 'path';
 import fs from 'fs';
 import childProcess from 'child_process';
-import phantomjs from 'phantomjs-prebuilt';
+
+// We let the package user install whatever phantomjs-prebuilt version they want
+// on the server. This will throw an error if they haven't done so.
+import { checkNpmVersions } from 'meteor/tmeasday:check-npm-versions';
+checkNpmVersions({
+  'phantomjs-prebuilt': '2.x.x'
+});
+
+// We can't use `import` here because it will be hoisted to before the `checkNpmVersions` call
+const phantomjs = require('phantomjs-prebuilt');
 
 const PHANTOMJS_SCRIPT_FILE_NAME = 'phantomjsScript.js';
 

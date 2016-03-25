@@ -7,7 +7,7 @@ This package exports a `startPhantom` function for server code, which runs your 
 In your test driver package `package.js` file, add
 
 ```js
-api.use('dispatch:phantomjs-tests@0.0.3', 'server');
+api.use('dispatch:phantomjs-tests@0.0.1', 'server');
 ```
 
 Then in your server code, do something similar to this:
@@ -50,5 +50,3 @@ function runTests() {
 
 export { runTests };
 ```
-
-Also, be sure to tell your package users to `npm i --save-dev phantomjs-prebuilt` in their app.

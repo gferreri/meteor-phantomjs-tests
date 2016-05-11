@@ -2,13 +2,13 @@ Package.describe({
   name: "dispatch:phantomjs-tests",
   summary: "A helper package for Meteor test driver packages. Runs client tests in PhantomJS.",
   git: "https://github.com/dispatch/meteor-phantomjs-tests.git",
-  version: '0.0.4',
+  version: '0.0.5',
   testOnly: true,
 });
 
 Npm.depends({
   'meteor-force-non-portable': '1.0.0',
-  'phantomjs-prebuilt': '2.1.5',
+  'phantomjs-prebuilt': '2.1.7',
 });
 
 Package.onUse(function (api) {

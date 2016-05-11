@@ -1,5 +1,5 @@
-var phantomjs = Npm.require('phantomjs-prebuilt')
-var childProcess = Npm.require('child_process')
+const phantomjs = Npm.require('phantomjs-prebuilt');
+const childProcess = Npm.require('child_process');
 
 const PHANTOMJS_SCRIPT_FILE_NAME = 'phantomjsScript.js';
 
@@ -8,17 +8,17 @@ function startPhantom({
   stderr,
   done,
 }) {
-  var scriptPath = Assets.absoluteFilePath(PHANTOMJS_SCRIPT_FILE_NAME);
+  const scriptPath = Assets.absoluteFilePath(PHANTOMJS_SCRIPT_FILE_NAME);
 
   if (process.env.METEOR_PHANTOMJS_DEBUG) {
     console.log('PhantomJS Path:', phantomjs.path);
     console.log('PhantomJS Script Path:', scriptPath);
   }
 
-  var phantomProcess = childProcess.execFile(phantomjs.path, [scriptPath], {
+  const phantomProcess = childProcess.execFile(phantomjs.path, [scriptPath], {
     env: {
-      ROOT_URL: process.env.ROOT_URL
-    }
+      ROOT_URL: process.env.ROOT_URL,
+    },
   });
 
   phantomProcess.on('error', (error) => {

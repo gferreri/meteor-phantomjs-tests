@@ -1,7 +1,5 @@
-import path from 'path';
-import fs from 'fs';
-import childProcess from 'child_process';
-import phantomjs from 'phantomjs-prebuilt';
+var phantomjs = Npm.require('phantomjs-prebuilt')
+var childProcess = Npm.require('child_process')
 
 const PHANTOMJS_SCRIPT_FILE_NAME = 'phantomjsScript.js';
 
@@ -19,7 +17,7 @@ function startPhantom({
 
   var phantomProcess = childProcess.execFile(phantomjs.path, [scriptPath], {
     env: {
-      ROOT_URL: process.env.ROOT_URL,
+      ROOT_URL: process.env.ROOT_URL
     }
   });
 

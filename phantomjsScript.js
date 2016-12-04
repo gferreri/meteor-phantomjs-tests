@@ -1,10 +1,23 @@
 var page = require('webpage').create();
 var system = require('system');
 
+// Returns a string with ANSII escape characters removed.
+// Borrowed from https://www.npmjs.com/package/strip-ansi
+function stripAnsi(str) {
+  if (str.length === 0) return str;
+  return str.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');
+}
+
 var lastOutput = new Date();
 page.onConsoleMessage = function(message) {
   lastOutput = new Date();
-  return console.log(message);
+  if (typeof message === 'string') {
+    // Remove empty "stdout" lines. Not sure where these come from.
+    // See https://github.com/DispatchMe/meteor-mocha-phantomjs/issues/30
+    if (stripAnsi(message).trim() !== 'stdout:') console.log(message);
+    return;
+  }
+  console.log(message);
 };
 
 page.onError = function(msg, trace) {
@@ -14,7 +27,7 @@ page.onError = function(msg, trace) {
   if (testsAreRunning) return;
   console.error(msg);
   trace.forEach(function(item) {
-    return console.error('    ' + item.file + ': ' + item.line);
+    console.error('    ' + item.file + ': ' + item.line);
   });
   // We could call phantom.exit here, but sometimes there are benign client errors
   // and the tests still load and run fine. So instead there is a safeguard in the

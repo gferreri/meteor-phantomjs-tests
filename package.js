@@ -2,7 +2,7 @@ Package.describe({
   name: "dispatch:phantomjs-tests",
   summary: "A helper package for Meteor test driver packages. Runs client tests in PhantomJS.",
   git: "https://github.com/dispatch/meteor-phantomjs-tests.git",
-  version: '0.0.6',
+  version: '0.0.7',
   testOnly: true,
 });
 

@@ -1,4 +1,4 @@
-const phantomjs = Npm.require('phantomjs-prebuilt');
+const phantomjs = Npm.require('phantomjs');
 const childProcess = Npm.require('child_process');
 
 const PHANTOMJS_SCRIPT_FILE_NAME = 'phantomjsScript.js';

@@ -25,13 +25,10 @@ page.onError = function(msg, trace) {
     return window.testsAreRunning;
   });
   if (testsAreRunning) return;
-  console.error(msg);
   trace.forEach(function(item) {
     console.error('    ' + item.file + ': ' + item.line);
   });
-  // We could call phantom.exit here, but sometimes there are benign client errors
-  // and the tests still load and run fine. So instead there is a safeguard in the
-  // setInterval to exit if nothing happens for awhile.
+  phantom.exit(1)
 };
 
 page.open(system.env.ROOT_URL);
